@@ -10,4 +10,4 @@ spec:
     - protocol: UDP
       port: 30000
       targetPort: 30000
-  type: ClusterIP
+  type: NodePort

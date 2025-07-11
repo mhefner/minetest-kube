@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minetest
+  namespace: minetest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minetest
+  template:
+    metadata:
+      labels:
+        app: minetest
+    spec:
+      containers:
+      - name: minetest
+        image: mhefner1983/minetest_kube:x86  # your fixed image
+        args: ["/usr/games/minetestserver", "--world", "/data/world"]
+        ports:
+        - containerPort: 30000
+          protocol: UDP
+        volumeMounts:
+        - name: world-storage
+          mountPath: /data/world
+      volumes:
+      - name: world-storage
+        persistentVolumeClaim:
+          claimName: minetest-nfs-pvc

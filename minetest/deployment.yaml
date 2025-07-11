@@ -13,31 +13,31 @@ spec:
       labels:
         app: minetest
     spec:
-  tolerations:
-    - key: "arch"
-      operator: "Equal"
-      value: "amd64"
-      effect: "NoSchedule"
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-          - matchExpressions:
-              - key: kubernetes.io/hostname
-                operator: In
-                values:
-                  - ig11-74bb3a41
+      tolerations:
+        - key: "arch"
+          operator: "Equal"
+          value: "amd64"
+          effect: "NoSchedule"
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - ig11-74bb3a41
       containers:
-      - name: minetest
-        image: mhefner1983/minetest_kube:x86
-        args: ["/usr/games/minetestserver", "--world", "/data/world"]
-        ports:
-        - containerPort: 30000
-          protocol: UDP
-        volumeMounts:
-        - name: world-storage
-          mountPath: /data/world
+        - name: minetest
+          image: mhefner1983/minetest_kube:x86
+          args: ["/usr/games/minetestserver", "--world", "/data/world"]
+          ports:
+            - containerPort: 30000
+              protocol: UDP
+          volumeMounts:
+            - name: world-storage
+              mountPath: /data/world
       volumes:
-      - name: world-storage
-        persistentVolumeClaim:
-          claimName: minetest-pvc
+        - name: world-storage
+          persistentVolumeClaim:
+            claimName: minetest-pvc

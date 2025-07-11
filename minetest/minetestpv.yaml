@@ -7,7 +7,8 @@ spec:
     storage: 5Gi
   accessModes:
     - ReadWriteMany
-  nfs:
-    server: 10.0.0.60    # <-- Your NFS server IP here
-    path: /mnt/storage/minetest    # <-- Your exported NFS path
   persistentVolumeReclaimPolicy: Retain
+  storageClassName: ""       # disable dynamic provisioning
+  nfs:
+    server: 10.0.0.60
+    path: /mnt/storage/minetest

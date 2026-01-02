@@ -30,13 +30,11 @@ spec:
       containers:
         - name: minetest
           image: mhefner1983/minetest_kube:x86
+          imagePullPolicy: Always
           args: ["/usr/games/minetestserver", "--world", "/data/world"]
           ports:
             - containerPort: 30000
               protocol: UDP
-          volumeMounts:
-            - name: world-storage
-              mountPath: /data/world
       volumes:
         - name: world-storage
           persistentVolumeClaim:

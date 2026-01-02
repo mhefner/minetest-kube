@@ -10,5 +10,5 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: ""       # disable dynamic provisioning
   nfs:
-    server: 10.0.0.7
+    server: 10.0.0.14
     path: /mnt/storage/minetest

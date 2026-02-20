@@ -15,9 +15,4 @@ spec:
     persistentVolumeClaim:
       claimName: minetest-pvc
   nodeSelector:
-    kubernetes.io/hostname: ig11-74bb3a41
-  tolerations:
-  - key: "arch"
-    operator: "Equal"
-    value: "amd64"
-    effect: "NoSchedule"
+    kubernetes.io/arch: arm64

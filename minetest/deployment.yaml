@@ -13,23 +13,11 @@ spec:
       labels:
         app: minetest
     spec:
-      tolerations:
-        - key: "arch"
-          operator: "Equal"
-          value: "amd64"
-          effect: "NoSchedule"
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: kubernetes.io/hostname
-                    operator: In
-                    values:
-                      - ig11-74bb3a41
+      nodeSelector:
+        kubernetes.io/arch: arm64
       containers:
         - name: minetest
-          image: mhefner1983/minetest_kube:x86
+          image: mhefner1983/minetest_kube:arm64
           imagePullPolicy: Always
           args: ["/usr/games/minetestserver", "--world", "/data/world"]
           ports:
